@@ -8,20 +8,18 @@ class Result extends React.Component {
         <ul>
           {this.props.data
             // .filter(item => item.show.id%2 === 0)
-            .map(result => {
-              let defaultImage = 'https://placehold.it/300x200/?text=TV';
-              // if(result.show.image !== null){
-              //   image = result.show.image.medium;
-              // }
-              return(
-                <li key={result.show.id}>
-                  <h2>{result.show.name}</h2>
-                  <img 
-                  src = {(result.show.image !== null) ? result.show.image.medium :defaultImage} 
-                  alt = {result.show.name}/>
-                </li>
+            .map((result, index) => {
+            let defaultImage = 'https://placehold.it/300x200/?text=TV';
+            return(
+              <li key={result.show.id}>
+                <h2>{result.show.name}</h2>
+                <img
+                  src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
+                />
+              </li>
               );
-          })}
+            })
+          }
         </ul>
       </div>
     )

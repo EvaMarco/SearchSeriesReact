@@ -11,8 +11,9 @@ class Search extends React.Component {
         <Field 
           textoInput = {this.props.textoInput}
           textoEtiqueta = {this.props.textoEtiqueta}
+          getUserText = {this.props.getUserText}
         />
-        <Button textoBoton = {this.props.textoBoton}/>
+        <Button textoBoton = {this.props.textoBoton} btnAction = {this.props.btnAction}/>
       </div>
     )
   }
@@ -22,6 +23,8 @@ Search.propTypes = {
   textoInput : PropTypes.string.isRequired,
   textoEtiqueta : PropTypes.string,
   textoBoton : PropTypes.string.isRequired,
+  btnAction : PropTypes.func.isRequired,
+  getUserText: PropTypes.func.isRequired
 }
 
 export default Search

@@ -12,6 +12,7 @@ class Field extends React.Component {
           type="text" 
           id = "search" 
           placeholder = {this.props.textoInput}
+          onChange = {this.props.getUserText}
         />
       </React.Fragment>
     )
@@ -20,6 +21,7 @@ class Field extends React.Component {
 
 Field.propTypes = {
   textoInput : PropTypes.string.isRequired,
-  textoEtiqueta : PropTypes.string
+  textoEtiqueta : PropTypes.string.isRequired,
+  getUserText: PropTypes.func.isRequired
 }
 export default Field
