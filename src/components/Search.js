@@ -7,7 +7,6 @@ class Search extends React.Component {
   render(){
     return(
       <div className="app__search">
-        <h1>Mis series favoritas.</h1>
         <Field 
           textoInput = {this.props.textoInput}
           textoEtiqueta = {this.props.textoEtiqueta}
