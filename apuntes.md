@@ -18,3 +18,18 @@ this.setState({
 ~~~~
 
 Esto se usa cuando vamos a cambiar el contenido del setState pero que dependa del estado anterior. 
+
+Si tenemos un objeto dentro de un objeto necesitamos, para acceder a las propiedades de 2º nivel, tendremos que hacer algo así.
+
+~~~~
+this.state = {
+  name: 'Eva',
+  obj:{
+    key1:1,
+    key2:2
+  }
+}
+this.setState(prevState => {
+  const newObj = {...prevState.obj, key1: 10}; return {obj:newObj}
+})
+~~~~

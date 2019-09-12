@@ -8,6 +8,7 @@ class Search extends React.Component {
     return(
       <div className="app__search">
         <Field 
+          userInput={this.props.userInput}
           textoInput = {this.props.textoInput}
           textoEtiqueta = {this.props.textoEtiqueta}
           getUserText = {this.props.getUserText}

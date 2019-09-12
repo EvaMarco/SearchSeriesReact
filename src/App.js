@@ -2,6 +2,7 @@ import React from 'react';
 import Search from './components/Search';
 import Result from './components/Result';
 import Favs from './components/Favs';
+import './scss/main.scss';
 
 const buttonText = 'Buscar';
 const inputText = 'Nombre de Serie';
@@ -13,16 +14,15 @@ class App extends React.Component {
         super(props);
         this.getUserText = this.getUserText.bind(this);
         this.printButtonContent = this.printButtonContent.bind(this);
+        this.getFavId = this.getFavId.bind(this);
         this.state = {
           counter: 0,
-          input: '',
+          input: 'Dora',
           api: []
         }
     }
     getUserText(event) {
-
       const value = event.currentTarget.value
-        console.log(event.currentTarget.value);
         this.setState({
           input : value
         })
@@ -31,28 +31,35 @@ class App extends React.Component {
         fetch(endpoint + this.state.input)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 this.setState({
                   api: data
                 });
             });
-
     }
+    getFavId(event){
+        const favId = event.currentTarget.id;
+        console.log(favId);
+    }
+
     render() {
         return (
             <div className="App">
                 <h1> Mis series favoritas</h1>
                 <Search
+                    userInput = {this.state.input}
                     textoBoton={buttonText}
                     textoInput={inputText}
                     textoEtiqueta={labelText}
                     btnAction={this.printButtonContent}
                     getUserText={this.getUserText}
                 />
-                <Favs />
-                <Result
-                    data={this.state.api}
-                />
+                <div className='app__content'>
+                    <Favs />
+                    <Result
+                        getFavId = {this.getFavId}
+                        data={this.state.api}
+                    />
+                </div>
 
             </div>
         );

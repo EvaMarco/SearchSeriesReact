@@ -11,7 +11,7 @@ class Result extends React.Component {
             .map((result, index) => {
             let defaultImage = 'https://placehold.it/300x200/?text=TV';
             return(
-              <li key={result.show.id}>
+              <li key={result.show.id} id={result.show.id} onClick = {this.props.getFavId}>
                 <h2>{result.show.name}</h2>
                 <img
                   src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
@@ -27,6 +27,7 @@ class Result extends React.Component {
 }
 
 Result.propTypes = {
+  getFavId: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object)
 }
 export default Result

@@ -1,0 +1,8 @@
+.app__content{
+  display:grid;
+  grid-template-columns: 300px auto;
+}
+.app_favs{
+  grid-column: 1/2;
+  grid-row: 1/2
+}

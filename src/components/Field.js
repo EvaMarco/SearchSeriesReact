@@ -8,6 +8,7 @@ class Field extends React.Component {
         <label htmlFor="search"> {this.props.textoEtiqueta}
           </label>
         <input 
+          value = {this.props.userInput}
           name = "search" 
           type="text" 
           id = "search" 
