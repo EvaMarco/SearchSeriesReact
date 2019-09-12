@@ -7,19 +7,19 @@ class Result extends React.Component {
       <div className="app__results">
         <ul>
           {this.props.data
-            // .filter(item => item.show.id%2 === 0)
-            .map((result, index) => {
-            let defaultImage = 'https://placehold.it/300x200/?text=TV';
-            return(
-              <li key={result.show.id} id={result.show.id} onClick = {this.props.getFavId}>
-                <h2>{result.show.name}</h2>
-                <img
-                  src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
-                />
-              </li>
-              );
-            })
-          }
+            .map((result) => {
+              let defaultImage = 'https://placehold.it/300x200/?text=TV';
+                return(
+                  <li key={result.show.id} id={result.show.id} onClick = {this.props.getFavId}>
+                    <h2>{result.show.name}</h2>
+                    <img
+                      src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
+                    />
+                  </li>
+                  );
+                }
+              ) 
+            }
         </ul>
       </div>
     )
