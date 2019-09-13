@@ -22,6 +22,18 @@ class App extends React.Component {
       favs: []
     }
   }
+
+  componentDidMount(){
+    this.getStoragedFavs()
+  }
+  getStoragedFavs (){
+    const ls = JSON.parse(localStorage.getItem('favs'));
+    if(ls !== null){
+      this.setState ({
+        favs : ls
+      })
+    }
+  }
   getUserText(event) {
     const value = event.currentTarget.value
     this.setState({
@@ -39,13 +51,23 @@ class App extends React.Component {
       });
   }
   getFavId(event) {
-    const favId = parseInt(event.currentTarget.id);
-    const favSerie = this.state.api.find(item => item.show.id === favId);
-    this.setState(prevState => {
-      const newFav = [...prevState.favs];
-      newFav.push(favSerie);
-      return {favs:newFav};
-    });
+    const favId = parseInt(event.currentTarget.id);  
+    const futureFav = this.state.api.find(item => item.show.id === favId);
+
+    this.setState(prevState => 
+      {
+        const newFav = [...prevState.favs];
+        const FavSerieIndex = this.state.favs.findIndex(item => item.show.id === favId);
+        if(FavSerieIndex  === -1){
+          newFav.push(futureFav);
+        }
+        else{
+          newFav.splice(FavSerieIndex, 1);
+        }
+        localStorage.setItem ('favs', JSON.stringify(newFav));
+        return {favs:newFav};
+      }
+    );
   }
 
   render() {
@@ -67,6 +89,7 @@ class App extends React.Component {
           <Result
             getFavId = {this.getFavId}
             data = {this.state.api}
+            favs = {this.state.favs}
           />
         </div>
 
