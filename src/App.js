@@ -3,11 +3,11 @@ import Search from './components/Search';
 import Result from './components/Result';
 import Favs from './components/Favs';
 import './scss/main.scss';
+import {getSeries} from './services/get_series'
 
 const buttonText = 'Buscar';
 const inputText = 'Nombre de Serie';
 const labelText = 'Busca tu serie favorita.';
-const endpoint = 'https://api.tvmaze.com/search/shows?q=';
 
 class App extends React.Component {
   constructor(props) {
@@ -41,12 +41,10 @@ class App extends React.Component {
     })
   }
   printButtonContent() {
-    fetch(endpoint + this.state.input)
-      .then(res => res.json())
+    getSeries(this.state.input)
       .then(data => {
         this.setState({
           api: data,
-          favs: []
         });
       });
   }

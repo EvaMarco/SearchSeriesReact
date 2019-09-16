@@ -16,6 +16,7 @@ class Result extends React.Component {
     const {data, getFavId} = this.props;
     return(
       <div className="app__results">
+        {!data.length && <p> Haz una búsqueda en el campo de arriba.</p>}
         <ul>
           {data
             .map((result) => {
