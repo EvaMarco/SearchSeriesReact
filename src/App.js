@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props);
     this.getUserText = this.getUserText.bind(this);
     this.printButtonContent = this.printButtonContent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
     this.getFavId = this.getFavId.bind(this);
     this.state = {
       counter: 0,
@@ -48,6 +49,18 @@ class App extends React.Component {
         });
       });
   }
+  deleteEvent(event){
+    const showId = parseInt(event.currentTarget.dataset.id);  
+    this.setState(prevState => 
+      {
+        const newFavs = [...prevState.favs];
+        const FavSerieIndex = newFavs.findIndex(item => item.show.id === showId);
+        newFavs.splice(FavSerieIndex, 1);
+        localStorage.setItem ('favs', JSON.stringify(newFavs));
+        return {favs:newFavs};
+      }
+    );
+  }
   getFavId(event) {
     const favId = parseInt(event.currentTarget.id);  
     const futureFav = this.state.api.find(item => item.show.id === favId);
@@ -55,7 +68,7 @@ class App extends React.Component {
     this.setState(prevState => 
       {
         const newFav = [...prevState.favs];
-        const FavSerieIndex = this.state.favs.findIndex(item => item.show.id === favId);
+        const FavSerieIndex = newFav.findIndex(item => item.show.id === favId);
         if(FavSerieIndex  === -1){
           newFav.push(futureFav);
         }
@@ -83,6 +96,7 @@ class App extends React.Component {
         <div className='app__content'>
           <Favs
             favs = {this.state.favs}
+            deleteFav = {this.deleteEvent}
           />
           <Result
             getFavId = {this.getFavId}

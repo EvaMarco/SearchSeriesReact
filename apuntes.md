@@ -33,3 +33,5 @@ this.setState(prevState => {
   const newObj = {...prevState.obj, key1: 10}; return {obj:newObj}
 })
 ~~~~
+
+Se puede crear una variable de apoyo con un true o false para poder hacer un cortocircuito. 

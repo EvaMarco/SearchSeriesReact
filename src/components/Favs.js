@@ -17,6 +17,7 @@ class Favs extends React.Component {
                 <img
                   src={(fav.show.image !== null) ? fav.show.image.medium : defaultImage} alt={fav.show.name} 
                 />
+                <button onClick = {this.props.deleteFav} data-id={fav.show.id}>Borrar de favorito</button>
               </li>
               );
             })
@@ -27,6 +28,7 @@ class Favs extends React.Component {
   }
 }
 Favs.propTypes = {
-  favs: PropTypes.arrayOf(PropTypes.object).isRequired
+  favs: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteFav: PropTypes.func
 }
 export default Favs

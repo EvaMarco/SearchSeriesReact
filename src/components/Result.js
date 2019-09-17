@@ -20,7 +20,7 @@ class Result extends React.Component {
         <ul>
           {data
             .map((result) => {
-              let defaultImage = 'https://placehold.it/300x200/?text=TV';
+              let defaultImage = 'https://placehold.it/200x300/?text=TV';
                 return(
                   <li  className = {`app__result ${this.isFav(result.show.id)}`}key={result.show.id} id={result.show.id} onClick = {getFavId}>
                     <h2>{result.show.name}</h2>
