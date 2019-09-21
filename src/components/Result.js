@@ -1,5 +1,6 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 class Result extends React.Component {
   isFav(id){
@@ -22,11 +23,15 @@ class Result extends React.Component {
             .map((result) => {
               let defaultImage = 'https://placehold.it/200x300/?text=TV';
                 return(
-                  <li  className = {`app__result ${this.isFav(result.show.id)}`}key={result.show.id} id={result.show.id} onClick = {getFavId}>
-                    <h2>{result.show.name}</h2>
-                    <img
-                      src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
-                    />
+                  <li  className = {`app__result ${this.isFav(result.show.id)}`}key={result.show.id} id={result.show.id}>
+                    <Link to ={`/tvshow/${result.show.id}`}>
+                      <div>
+                        <h2>{result.show.name}</h2>
+                        <img
+                          src={(result.show.image !== null) ? result.show.image.medium : defaultImage} alt={result.show.name} 
+                        />
+                      </div>
+                    </Link>
                   </li>
                   );
                 }

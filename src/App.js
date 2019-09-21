@@ -1,9 +1,9 @@
 import React from 'react';
-import Search from './components/Search';
-import Result from './components/Result';
-import Favs from './components/Favs';
+import Main from './components/Main';
 import './scss/main.scss';
-import {getSeries} from './services/get_series'
+import {getSeries} from './services/get_series';
+import TvShow from './components/TvShow';
+import {Switch, Route} from 'react-router-dom';
 
 const buttonText = 'Buscar';
 const inputText = 'Nombre de Serie';
@@ -85,25 +85,27 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1> Mis series favoritas</h1>
-        <Search
-          userInput ={this.state.input}
-          textoBoton ={buttonText}
-          textoInput ={inputText}
-          textoEtiqueta ={labelText}
-          btnAction ={this.printButtonContent}
-          getUserText ={this.getUserText}
-        />
-        <div className='app__content'>
-          <Favs
-            favs = {this.state.favs}
-            deleteFav = {this.deleteEvent}
-          />
-          <Result
-            getFavId = {this.getFavId}
-            data = {this.state.api}
-            favs = {this.state.favs}
-          />
-        </div>
+        <Switch>
+          <Route exact path ="/" render = {() => 
+            <Main 
+              userInput ={this.state.input}
+              textoBoton ={buttonText}
+              textoInput ={inputText}
+              textoEtiqueta ={labelText}
+              btnAction ={this.printButtonContent}
+              getUserText ={this.getUserText}
+              favs = {this.state.favs}
+              deleteFav = {this.deleteEvent}
+              getFavId = {this.getFavId}
+              data = {this.state.api}
+            />
+          }/>
+          <Route path ="/tvshow/:id" render = {
+            (param) =>
+            <TvShow param = {param} data = {this.state.api}/>
+          } />
+        </Switch>
+
 
       </div>
     );
